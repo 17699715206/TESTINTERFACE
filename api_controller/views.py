@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
-from API_manage_system.services import api
+from api_controller.services import api
 
 @csrf_exempt
 def hello(request):
@@ -22,4 +22,5 @@ def req_json(request):
     request_data = api().api_func(json_data)
     print(request_data)
     # return HttpResponse("接口响应时间：" +req_tima +"接口响应状态码："+req_ststus)
-    return HttpResponse(str(request_data["code"])+","+str(request_data["total_seconds"]))
+    # return HttpResponse(str(request_data["code"])+","+str(request_data["total_seconds"]+","+str(request_data["content"])))
+    return HttpResponse(str(request_data.content,request_data.status_code,request_data.elapsed.total_seconds()))

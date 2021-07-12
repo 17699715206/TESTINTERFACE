@@ -31,10 +31,11 @@ class api():
             r = requests.get(url=url, headers=headers, params=params)
             data = {
                 "code": r.status_code,
-                "total_seconds": r.elapsed.total_seconds()
+                "total_seconds": r.elapsed.total_seconds(),
+                "content":r.content
             }
             print(data)
-            return data
+            return r
         elif req_json['request_method'] == 'post':  # 如果是post在判断files是否为空
             if req_json['files'] == '':
                 r = requests.post(url=url, headers=headers, data=params)
